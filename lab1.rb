@@ -27,3 +27,35 @@ numbers = numbers.map { |x| x < 0 ? 1 : x }
 puts "Результат:"
 p numbers
 
+# Завдання 3: Порахувати суму квадратів елементів масиву
+
+puts"Завдання 3"
+
+numbers = [1, 2, 3, 4, 5]
+
+sum1 = numbers.sum { |x| x**2 }
+
+sum2 = numbers.map { |x| x**2 }.reduce(:+)
+
+puts "Через sum: #{sum1}"
+puts "Через map + reduce: #{sum2}"
+
+# Завдання 4: Згрупувати спортсменів за видом спорту
+# та обчислити середній вік для кожного виду спорту
+
+puts "Завдання 4"
+athletes = [
+  {name: "Іван", age: 22, sport: "Tennis"},
+  {name: "Олена", age: 24, sport: "Tennis"},
+  {name: "Володя", age: 20, sport: "Football"},
+  {name: "Анна", age: 28, sport: "Football"},
+  {name: "Марія", age: 20, sport: "Swimming"},
+  {name: "Влад", age: 24, sport: "Swimming"}
+]
+
+groups = athletes.group_by { |athlete| athlete[:sport] }
+
+groups.each do |sport, group|
+  average = group.sum { |athlete| athlete[:age] }.to_f / group.length
+  puts "#{sport}: #{average}"
+end
