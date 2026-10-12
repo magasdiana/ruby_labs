@@ -2,7 +2,6 @@
 # Завдання 1 Обчислити середнє геометричне двох додатніх чисел G=sqrt(a*b)
 
 puts "Завдання 1"
-ZERO = 0
 
 a = 4
 b = 9
@@ -57,5 +56,28 @@ groups = athletes.group_by { |athlete| athlete[:sport] }
 
 groups.each do |sport, group|
   average = group.sum { |athlete| athlete[:age] }.to_f / group.length
+  puts "#{sport}: #{average}"
+end
+
+
+#Завдання 4 2 спосіб
+puts "Завдання 4(2 спосіб)"
+athletes = [
+  {name: "Іван", age: 22, sport: "Tennis"},
+  {name: "Олена", age: 24, sport: "Tennis"},
+  {name: "Володя", age: 20, sport: "Football"},
+  {name: "Анна", age: 28, sport: "Football"},
+  {name: "Марія", age: 20, sport: "Swimming"},
+  {name: "Влад", age: 24, sport: "Swimming"}
+]
+
+sports = athletes.map { |athlete| athlete[:sport] }.uniq
+
+sports.each do |sport|
+  group = athletes.select { |athlete| athlete[:sport] == sport }
+
+  ages = group.map { |athlete| athlete[:age] }
+  average = ages.sum.to_f / ages.length
+
   puts "#{sport}: #{average}"
 end
